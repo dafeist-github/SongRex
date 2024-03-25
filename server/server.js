@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 const mysql = require('mysql');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(cors());
@@ -9,8 +10,10 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
+const secretKey = "testkey";
+
 app.use(session({
-	secret: 'secret',
+	secret: secretKey,
 	resave: true,
 	saveUninitialized: true
 }));
@@ -63,7 +66,7 @@ app.post('/auth', function(request, response) {
 
 	if (username && password) {
 
-		connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+		con.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
 
 			if (error) throw error;
 
@@ -72,25 +75,28 @@ app.post('/auth', function(request, response) {
 				request.session.loggedin = true;
 				request.session.username = username;
 
-				response.redirect('/manage');
+                console.log("Successful Login for Account: " + username);
+                response.send({token: generateToken(username)});
+
 			} else {
-				response.send('invalid_name_or_pw');
+				response.status(400).send('invalid_name_or_pw');
 			}			
 			response.end();
 		});
 	} else {
-		response.send('no_name_or_pw');
+		response.status(400).send('no_name_or_pw');
 		response.end();
 	}
 });
 
-app.get('/manage', function(request, response) {
-
-	if (request.session.loggedin) {
-		response.send('success, uname: ' + request.session.username);
+app.post('/validate', function(request, response) {
+    
+	if (verifyRequest(request.body.username, request.body.token)) {
+		response.send({auth: true});
 	} else {
-		response.send('not_authed');
+		response.send({auth: false});
 	}
+
 	response.end();
 });
 
@@ -123,5 +129,22 @@ async function processSongRequest(name, link, res) {
                 resolve();
             });
         });
+    }
+}
+
+function generateToken(username) {
+    return jwt.sign({ username: username }, secretKey, { expiresIn: '24h' });
+}
+
+function verifyRequest(username, token) {
+    if(username === verifyToken(token).username) return true;
+}
+
+function verifyToken(token) {
+    try {
+        const decoded = jwt.verify(token, secretKey);
+        return decoded;
+    } catch (err) {
+        return null;
     }
 }

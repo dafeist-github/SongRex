@@ -1,7 +1,12 @@
 <script>
+  import SubmitFeedback from '$lib/SubmitFeedback.svelte';
+  import { goto } from '$app/navigation';
 
   let username = "";
   let password = "";
+
+  let showFeedback = false;
+  let submitState = "";
 
   async function handleEnter(event) {
       if (event.key === 'Enter') {
@@ -10,10 +15,39 @@
   }
 
   async function submitLogin() {
+    console.log("attempting login");
 
-    
+    if(username.length < 4 || password.length < 8) {
+      submitState = "invalid_creds";
+      showFeedback = true;
 
-  }
+      return;
+    }
+
+    const res = await fetch('http://localhost:3000/auth', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          "username": username,
+          "password": password
+        })
+      });
+
+      if(res.ok) {
+
+        const json = await res.json();
+        await localStorage.setItem('token', json.token);
+        await localStorage.setItem('username', username);
+
+        goto("/manage");
+
+      } else {
+        console.log("not ok :(")
+
+        submitState = "invalid_creds";
+        showFeedback = true;
+      }
+    }
 
 </script>
 
@@ -38,6 +72,10 @@
 </div>
 
 <button class="submit" on:click={submitLogin}>Anmelden</button>
+
+{#if showFeedback}
+  <SubmitFeedback state={submitState}/>
+{/if}
 
 </main>
 

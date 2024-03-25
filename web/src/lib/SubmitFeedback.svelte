@@ -18,6 +18,10 @@
   <p class={state}>&#10060; Interner Server-Error :/</p>
   {/if}
 
+  {#if state === 'invalid_creds'}
+  <p class={state}>&#10060; Ungültige Login-Daten</p>
+  {/if}
+
 <style>
 
   p {
@@ -35,7 +39,7 @@
     line-height: 3vw;
   }
 
-  .missing_name, .invalid_link {
+  .missing_name, .invalid_link, .server_error, .invalid_creds {
     color: rgb(236, 36, 36);
   }
 
