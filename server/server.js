@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const session = require('express-session');
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 
@@ -11,12 +10,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const secretKey = "testkey";
-
-app.use(session({
-	secret: secretKey,
-	resave: true,
-	saveUninitialized: true
-}));
 
 app.post("/submit", (req, res) => {
     console.log("Song-Request received");
@@ -72,9 +65,6 @@ app.post('/auth', function(request, response) {
 
 			if (results.length > 0) {
 
-				request.session.loggedin = true;
-				request.session.username = username;
-
                 console.log("Successful Login for Account: " + username);
                 response.send({token: generateToken(username)});
 
@@ -90,7 +80,7 @@ app.post('/auth', function(request, response) {
 });
 
 app.post('/validate', function(request, response) {
-    
+
 	if (verifyRequest(request.body.username, request.body.token)) {
 		response.send({auth: true});
 	} else {

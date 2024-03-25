@@ -66,7 +66,7 @@
 
 <div class="desc">
 <i class="fas fa-lock"></i>
-<input class="password-field" type="text" bind:value={password} placeholder="Passwort" maxlength="120" on:keydown={handleEnter}>
+<input class="password-field" type="password" bind:value={password} placeholder="Passwort" maxlength="120" on:keydown={handleEnter}>
 </div>
 
 </div>
