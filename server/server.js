@@ -3,6 +3,8 @@ const cors = require('cors');
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 
+const argon2 = require("argon2");
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -16,7 +18,7 @@ app.post("/submit", (req, res) => {
     const name = req.body.name;
     const link = req.body.link;
 
-    if(link.length <= 20 || !(link.startsWith('https://') || link.startsWith('http://')) || !link.includes('.') || name.length <= 5) {
+    if (link.length <= 20 || !(link.startsWith('https://') || link.startsWith('http://')) || !link.includes('.') || name.length <= 5) {
         res.status(400);
         return;
     }
@@ -24,70 +26,77 @@ app.post("/submit", (req, res) => {
     processSongRequest(name, link, res);
 
     res.status(200).send('success');
-    
+
 });
-
-
 
 const con = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
     database: 'SongRex'
-  });
+});
 
-  con.connect();
+con.connect();
 
-  console.log('Connected to MySQL-Server');
-  
-  con.query("CREATE TABLE IF NOT EXISTS songs (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100), link VARCHAR(100), count INT)", function(err, result) {
-    if(err) throw err;
-        console.log("Found table: songs");
-  });
+console.log('Connected to MySQL-Server');
 
-  con.query("CREATE TABLE IF NOT EXISTS accounts (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(50), password VARCHAR(255), email VARCHAR(100))", function(err, result) {
-    if(err) throw err;
-        console.log("Found table: accounts");
-  });
+con.query("CREATE TABLE IF NOT EXISTS songs (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100), link VARCHAR(100), count INT)", function (err, result) {
+    if (err) throw err;
+    console.log("Found table: songs");
+});
+
+con.query("CREATE TABLE IF NOT EXISTS accounts (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(50), password VARCHAR(255), email VARCHAR(100))", function (err, result) {
+    if (err) throw err;
+    console.log("Found table: accounts");
+});
 
 app.listen(3000);
 
-app.post('/auth', function(request, response) {
+app.post('/auth', function (request, response) {
 
-	let username = request.body.username;
-	let password = request.body.password;
+    let username = request.body.username;
+    let password = request.body.password;
 
-	if (username && password) {
+    if (username && password) {
 
-		con.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
 
-			if (error) throw error;
+        con.query('SELECT password FROM accounts WHERE username = ?', [username], function (error, results, fields) {
+    
+            if (error) {
+                response.status(400).send('invalid_name_or_pw');
 
-			if (results.length > 0) {
+                return;
+            }
 
-                console.log("Successful Login for Account: " + username);
-                response.send({token: generateToken(username)});
+            argonverify(results[0].password, password).then((b) => {
+                if(b) {
+                    console.log("Successful Login for Account: " + username);
+                    response.send({ token: generateToken(username) });
+                } else {
+                    response.status(400).send('invalid_name_or_pw');
+                }
 
-			} else {
-				response.status(400).send('invalid_name_or_pw');
-			}			
-			response.end();
-		});
-	} else {
-		response.status(400).send('no_name_or_pw');
-		response.end();
-	}
+                response.end();
+            });
+
+        });
+
+    } else {
+        response.status(400).send('no_name_or_pw');
+        response.end();
+    }
+
 });
 
-app.post('/validate', function(request, response) {
+app.post('/validate', function (request, response) {
 
-	if (verifyRequest(request.body.username, request.body.token)) {
-		response.send({auth: true});
-	} else {
-		response.send({auth: false});
-	}
+    if (verifyRequest(request.body.username, request.body.token)) {
+        response.send({ auth: true });
+    } else {
+        response.send({ auth: false });
+    }
 
-	response.end();
+    response.end();
 });
 
 async function processSongRequest(name, link, res) {
@@ -127,7 +136,7 @@ function generateToken(username) {
 }
 
 function verifyRequest(username, token) {
-    if(username === verifyToken(token).username) return true;
+    if (username === verifyToken(token).username) return true;
 }
 
 function verifyToken(token) {
@@ -136,5 +145,15 @@ function verifyToken(token) {
         return decoded;
     } catch (err) {
         return null;
+    }
+}
+
+function argonverify(a, password) {
+    try {
+        const hash = argon2.verify(a, password);
+
+        return hash;
+    } catch (err) {
+        console.log("ERROR: " + err);
     }
 }
