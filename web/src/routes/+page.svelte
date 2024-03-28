@@ -8,13 +8,16 @@
 
   import SubmitFeedback from '$lib/SubmitFeedback.svelte';
 
+  const expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
+  const regex = new RegExp(expression);
+
   async function submitRequest() {
     console.log("attempting song submit");
 
     if(name.length <= 5) {
       submitState = 'missing_name';
       
-    } else if(link.length <= 20 || !(link.startsWith('https://') || link.startsWith('http://')) || !link.includes('.')) {
+    } else if(link.length <= 20 || !link.match(regex)) {
       submitState = 'invalid_link';
 
     } else {

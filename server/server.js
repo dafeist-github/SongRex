@@ -11,6 +11,9 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
+const expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
+const regex = new RegExp(expression);
+
 const secretKey = "testkey";
 
 app.post("/submit", (req, res) => {
@@ -18,7 +21,7 @@ app.post("/submit", (req, res) => {
     const name = req.body.name;
     const link = req.body.link;
 
-    if (link.length <= 20 || !(link.startsWith('https://') || link.startsWith('http://')) || !link.includes('.') || name.length <= 5) {
+    if (link.length <= 20 || !link.match(regex) || name.length <= 5) {
         res.status(400);
         return;
     }
