@@ -52,6 +52,32 @@ con.query("CREATE TABLE IF NOT EXISTS accounts (id INT AUTO_INCREMENT PRIMARY KE
 
 app.listen(3000);
 
+
+app.post('/reqdata', function (request, response) {
+    if(!verifyRequest(request.body.username, request.body.token)) {
+        response.status(401).send({auth: false});
+        return;
+    }
+
+    con.query('SELECT * FROM songs', function(error, results) {
+
+        var jsonArr = [];
+    
+        for (var i = 0; i < results.length; i++) {
+            jsonArr.push({
+                id: results[i].id,
+                name: results[i].name,
+                link: results[i].link
+            });
+        }
+
+        console.log('Sending SongData...')
+        response.send(jsonArr);
+    
+    });
+
+});
+
 app.post('/auth', function (request, response) {
 
     let username = request.body.username;
