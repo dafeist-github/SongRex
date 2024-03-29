@@ -8,6 +8,8 @@
   let showFeedback = false;
   let submitState = "";
 
+  if(localStorage.getItem("token")) goto("/manage");
+
   async function handleEnter(event) {
       if (event.key === 'Enter') {
           submitLogin();

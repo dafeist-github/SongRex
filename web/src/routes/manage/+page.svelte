@@ -36,7 +36,7 @@
     });
 
     if ((await res.json()).done) {
-      console.log('ok')
+      console.log('deleted song: ' + name);
       const res = await fetch("http://localhost:3000/reqdata", {
         method: "POST",
         headers: {
