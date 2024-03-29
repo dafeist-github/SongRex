@@ -39,7 +39,7 @@
       </div>
 
       <div class="element">
-        <a href={item.link} target="_blank" class="songlink">{item.link}</a>
+        <a href={item.link} target="_blank" class="songlink" style="font-style: italic;">{item.link}</a>
       </div>
       {/each}
     </ul>
@@ -61,7 +61,7 @@
 
   .element {
     font-size: 1.4vw;
-    width: 100vw;
+    width: 90vw;
     height: 1.4vw;
     margin-top: 0vw;
     color: rgb(218, 216, 216);
@@ -73,7 +73,7 @@
 
   .songname {
     display: inline-block;
-    margin-left: 10vw;
+    margin-left: 6vw;
     width: 50vw;
   }
 
@@ -86,6 +86,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     text-wrap: nowrap;
+    font-style: italic;
   }
 
 }
@@ -102,7 +103,7 @@
     }
 
     .element {
-      font-size: 6vw;
+      font-size: 7.2vw;
       color: rgb(218, 216, 216);
       font-family: Arial;
       width: 75vw;
@@ -113,11 +114,14 @@
 
     .songname {
       margin-left: 0vw;
+      height: 10px;
+      margin-bottom: 5vw;
     }
 
     .songlink {
       color: inherit;
       color: rgb(94, 145, 223);
+      font-size: 5.6vw;
     }
     
 
