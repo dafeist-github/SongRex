@@ -175,6 +175,11 @@ async function handleEnter(event) {
       margin-left: 6vw;
     }
 
+    .dj-nav {
+      font-size: 5vw;
+      margin-left: 64.2vw;
+    }
+
     .songname-field, .songlink-field {
       margin-left: 3vw;
       width: 60vw;

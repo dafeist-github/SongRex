@@ -55,6 +55,9 @@
 </script>
 
 <main>
+
+  <a href="/" class="back">Zurück</a>
+
   <p class="info">Songwünsche</p>
 
   <ul>
@@ -93,6 +96,21 @@
       text-align: center;
       margin-top: 100px;
       margin-bottom: 0px;
+    }
+
+    .back {
+      font-size: 1.8vw;
+      width: 26vw;
+      margin-left: 68vw;
+      font-family: Arial;
+      color: white;
+      border-radius: 10px;
+      background-color: rgb(57, 117, 233);
+      padding-left: 4vw;
+      padding-right: 4vw;
+      padding-bottom: 1vw;
+      padding-top: 1vw;
+      text-decoration: none;
     }
 
     .element {
@@ -145,6 +163,11 @@
       text-wrap: nowrap;
       font-style: italic;
     }
+
+    .back:hover {
+      background-color: rgb(31, 89, 204);
+    }
+
   }
 
   @media screen and (max-width: 800px) {
@@ -155,6 +178,11 @@
       text-align: center;
       margin-top: 100px;
       margin-bottom: 0px;
+    }
+
+    .back {
+      font-size: 5vw;
+      margin-left: 64.2vw;
     }
 
     .element {

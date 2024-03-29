@@ -57,6 +57,8 @@
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 
+<a href="/" class="back">Zurück</a>
+
 <p class="info">Bitte melde dich an</p>
 
 <div class="form">
@@ -97,6 +99,21 @@
     margin-top: 100px;
     margin-bottom: 0px;
   }
+
+  .back {
+    font-size: 1.8vw;
+    width: 26vw;
+    margin-left: 68vw;
+    font-family: Arial;
+    color: white;
+    border-radius: 10px;
+    background-color: rgb(57, 117, 233);
+    padding-left: 4vw;
+    padding-right: 4vw;
+    padding-bottom: 1vw;
+    padding-top: 1vw;
+    text-decoration: none;
+    }
 
   .desc {
     display: flex;
@@ -146,6 +163,10 @@
     background-color: rgb(31, 89, 204);
   }
 
+  .back:hover {
+    background-color: rgb(31, 89, 204);
+  }
+
   @media screen and (max-width: 800px) {
 
     i {
@@ -155,6 +176,11 @@
 
     .form {
       margin-top: 4px;
+    }
+
+    .back {
+      font-size: 5vw;
+      margin-left: 64.2vw;
     }
 
     .username-field, .password-field {
