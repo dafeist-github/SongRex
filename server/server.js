@@ -33,12 +33,33 @@ app.post("/submit", (req, res) => {
 
 });
 
-const con = mysql.createConnection({
+var con = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
     database: 'SongRex'
 });
+
+con.on('error', function(err) {
+    console.log('db error', err);
+    if(err.code === 'PROTOCOL_CONNECTION_LOST') {
+      handleDisconnect();
+    } else {
+      throw err;
+    }
+  });
+  
+function handleDisconnect() {
+    con = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'SongRex'
+    });
+
+    con.connect();
+  
+  }
 
 con.connect();
 
@@ -75,8 +96,7 @@ app.post('/reqdata', function (request, response) {
             });
         }
 
-        console.log('Sending SongData...')
-        response.send(jsonArr);
+        response.send(jsonArr); 
     
     });
 
