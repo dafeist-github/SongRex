@@ -32,10 +32,14 @@
 
     <ul>
       {#each songs as item}
+      <hr class="hr"/>
+
       <div class="element">
+        <button class="delete-button">&#10060;</button>
+      </div>
 
-          <p class="songname">{item.name}</p>
-
+      <div class="element">
+        <p class="songname">{item.name}</p>
       </div>
 
       <div class="element">
@@ -61,7 +65,7 @@
 
   .element {
     font-size: 1.4vw;
-    width: 90vw;
+    width: 96vw;
     height: 1.4vw;
     margin-top: 0vw;
     color: rgb(218, 216, 216);
@@ -69,12 +73,34 @@
     display: block;
     text-overflow: ellipsis;
     text-wrap: nowrap;
+    margin-right: 0;
+  }
+
+  .hr {
+      margin-bottom: -1.6vw;
+      margin-top: 1.6vw;
+      margin-left: -6.2vw;
+      margin-right: 4vw;
+    }
+
+  .delete-button {
+    display: inline-block;
+    width: 2vw;
+    font-size: 1.62vw;
+    margin-left: 2.6vw;
+    margin-top: 2.34vw;
+    background: none;
+    border: none;
+    cursor: pointer;
+
   }
 
   .songname {
     display: inline-block;
     margin-left: 6vw;
-    width: 50vw;
+    width: 46vw;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
   }
 
   .songlink {
@@ -106,16 +132,35 @@
       font-size: 7.2vw;
       color: rgb(218, 216, 216);
       font-family: Arial;
-      width: 75vw;
+      width: 85vw;
       overflow: hidden;
       text-overflow: ellipsis;
       text-wrap: nowrap;
+      margin-left: -5vw;
+    }
+
+    .hr {
+      margin-bottom: -5vw;
+      margin-top: 5vw;
+      margin-left: -6.2vw;
+      margin-right: 4vw;
+    }
+
+    .delete-button {
+      width: 2vw;
+      font-size: 8.62vw;
+      margin-top: 7.34vw;
+      margin-left: -2vw;
+      background: none;
+      border: none;
+      cursor: pointer;
     }
 
     .songname {
-      margin-left: 0vw;
-      height: 10px;
+      margin-left: -0vw;
+      height: 12px;
       margin-bottom: 5vw;
+      margin-top: 1vw;
     }
 
     .songlink {

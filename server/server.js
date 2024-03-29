@@ -17,9 +17,10 @@ const regex = new RegExp(expression);
 const secretKey = "testkey";
 
 app.post("/submit", (req, res) => {
-    console.log("Song-Request received");
     const name = req.body.name;
     const link = req.body.link;
+
+    console.log("Song-Request received: " + name);
 
     if (link.length <= 20 || !link.match(regex) || name.length <= 5) {
         res.status(400);
