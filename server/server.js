@@ -82,6 +82,23 @@ app.post('/reqdata', function (request, response) {
 
 });
 
+app.post('/deletesong', function (request, response) {
+    if(!verifyRequest(request.body.username, request.body.token)) {
+        response.status(401).send({auth: false});
+        return;
+    }
+
+    const sname = request.body.songname;
+    const slink = request.body.songlink;
+
+    con.query("DELETE FROM songs WHERE name = ? AND link = ?", [sname, slink], function (err, result) {
+        if (err) return;
+        response.status(200).send({done: true});
+        console.log("Deleted Song: " + sname);
+    });
+
+});
+
 app.post('/auth', function (request, response) {
 
     let username = request.body.username;
