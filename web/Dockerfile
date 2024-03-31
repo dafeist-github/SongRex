@@ -12,4 +12,4 @@ COPY --from=builder /app .
 RUN npm install
 ENV NODE_ENV=production
 ENTRYPOINT [ "" ]
-CMD ["npm", "run", "build"]
+CMD ["node", "build"]
