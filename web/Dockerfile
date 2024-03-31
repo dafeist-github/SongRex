@@ -11,4 +11,4 @@ WORKDIR /app
 COPY --from=builder . .
 ENV NODE_ENV=production
 ENTRYPOINT [ "" ]
-CMD ["npm", "run", "build"]
+CMD ["npm", "run", "preview"]
