@@ -1,1 +1,4 @@
-<link rel="stylesheet" href="/global.css">
+<script>
+    import '/global.css'
+  </script>
+  
