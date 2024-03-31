@@ -16,14 +16,12 @@ services:
     container_name: songrex-server
     restart: unless-stopped
     environment:
-      - MYSQL_HOST=localhost
+      - MYSQL_HOST=mysql
       - MYSQL_USER=root
       - MYSQL_PASSWORD=examplepw
       - MYSQL_DATABASE=SongRex
       - SECRET_KEY=examplekey
     build: server
-    ports: 
-      - 3000:3000
     networks:
       - shared-network
     depends_on:
