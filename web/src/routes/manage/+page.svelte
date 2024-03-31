@@ -56,6 +56,8 @@
 
 <main>
 
+  <link rel="stylesheet" href="/src/global.css">
+
   <a href="/" class="back">Zurück</a>
 
   <p class="info">Songwünsche</p>

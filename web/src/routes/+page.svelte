@@ -52,6 +52,8 @@ async function handleEnter(event) {
 
 <main>
 
+<link rel="stylesheet" href="/src/global.css">
+
 <a href="/login" class="dj-nav">Verwaltung</a>
 
 <p class="info">Song-Vorschlag einreichen</p>

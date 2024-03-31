@@ -55,6 +55,7 @@
 
 <main>
 
+<link rel="stylesheet" href="/src/global.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 
 <a href="/" class="back">Zurück</a>
