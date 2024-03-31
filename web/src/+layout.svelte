@@ -1,3 +1,3 @@
 <script>
-    import '../static/global.css'
+    import '../global.css'
 </script>
