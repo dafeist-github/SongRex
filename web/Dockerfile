@@ -9,6 +9,7 @@ RUN npm prune --production
 FROM node:18-alpine
 WORKDIR /app
 COPY --from=builder /app .
+RUN npm install
 ENV NODE_ENV=production
 ENTRYPOINT [ "" ]
 CMD ["npm", "run", "build"]
