@@ -89,9 +89,6 @@
 
 <style>
 
-  main {
-    background-color: rgb(31, 32, 34);
-  }
   @media screen and (min-width: 801px) {
     .info {
       font-size: 2.6vw;

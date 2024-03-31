@@ -79,10 +79,7 @@ async function handleEnter(event) {
 </main>
 
 <style>
-  main {
-    background-color: rgb(31, 32, 34);
-  }
-  
+
   .dj-nav {
     font-size: 1.8vw;
     width: 26vw;

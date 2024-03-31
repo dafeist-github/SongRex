@@ -85,10 +85,6 @@
 
 <style>
 
-  main {
-    background-color: rgb(31, 32, 34);
-  }
-
   i {
     color: white;
     font-size: 1.6vw;
