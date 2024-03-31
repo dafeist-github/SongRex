@@ -1,6 +1,6 @@
 services:
   mysql:
-    image: mysql:latest
+    image: mariadb:latest
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=examplepw
