@@ -52,8 +52,6 @@ async function handleEnter(event) {
 
 <main>
 
-<link rel="stylesheet" href="/src/global.css">
-
 <a href="/login" class="dj-nav">Verwaltung</a>
 
 <p class="info">Song-Vorschlag einreichen</p>
@@ -81,7 +79,10 @@ async function handleEnter(event) {
 </main>
 
 <style>
-
+  main {
+    background-color: rgb(31, 32, 34);
+  }
+  
   .dj-nav {
     font-size: 1.8vw;
     width: 26vw;
