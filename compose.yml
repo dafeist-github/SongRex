@@ -5,8 +5,6 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=examplepw
       - MYSQL_DATABASE=SongRex
-    ports:
-      - 3306:3306
     networks:
       - shared-network
     volumes:
