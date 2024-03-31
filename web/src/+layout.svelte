@@ -1,4 +1,3 @@
 <script>
-    import '/global.css'
-  </script>
-  
+    import '../static/global.css'
+</script>
