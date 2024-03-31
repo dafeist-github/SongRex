@@ -3,3 +3,5 @@
         background-color: rgb(31, 32, 34);
     }
 </style>
+
+<slot />
