@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 const expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
 const regex = new RegExp(expression);
 
-const secretKey = "testkey";
+const secretKey = process.env.SECRET_KEY || 'examplekey';
 
 app.post("/submit", (req, res) => {
     const name = req.body.name;
@@ -34,10 +34,10 @@ app.post("/submit", (req, res) => {
 });
 
 var con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'SongRex'
+    host: process.env.MYSQL_HOST || 'localhost',
+    user: process.env.MYSQL_USER || 'root',
+    password: process.env.MYSQL_PASSWORD || 'examplepw',
+    database: process.env.MYSQL_DATABASE || 'SongRex'
 });
 
 con.on('error', function(err) {
@@ -51,10 +51,10 @@ con.on('error', function(err) {
   
 function handleDisconnect() {
     con = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'SongRex'
+        host: process.env.MYSQL_HOST || 'localhost',
+        user: process.env.MYSQL_USER || 'root',
+        password: process.env.MYSQL_PASSWORD || 'example_pw',
+        database: process.env.MYSQL_DATABASE || 'SongRex'
     });
 
     con.connect();

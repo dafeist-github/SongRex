@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=example_pw
+      - MYSQL_DATABASE=SongRex
+    ports: 
+      - 3306:3306
+    networks:
+      - shared-network
+    volumes:
+      - ./mysql-db:/var/lib/mysql
+
+  server:
+    container_name: songrex-server
+    image: songrex-server:1.0.0
+    restart: unless-stopped
+    environment:
+      - MYSQL_HOST=localhost
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=examplepw
+      - MYSQL_DATABASE=SongRex
+      - SECRET_KEY=examplekey
+    build:
+      context: server
+      target: production
+      dockerfile: Dockerfile
+    ports: 
+      - 3000:3000
+    networks:
+      - shared-network
+    depends_on:
+      - mysql
+
+  web:
+    container_name: songrex-web
+    restart: unless-stopped
+    image: songrex-web:1.0.0
+    build:
+      context: web
+      target: production
+      dockerfile: Dockerfile
+    ports: 
+      - 5173:5173
+    networks:
+      - shared-network
+    depends_on:
+      - server
+
+networks:
+  shared-network:
