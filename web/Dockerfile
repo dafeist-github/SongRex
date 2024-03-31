@@ -12,4 +12,4 @@ COPY --from=builder /app .
 RUN npm install
 ENV NODE_ENV=production
 ENTRYPOINT [ "" ]
-CMD ["node", "-r", "dotenv/config", "build", "--port", "5173"]
+CMD ["node", "build", "--port", "5173"]
