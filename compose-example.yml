@@ -26,6 +26,7 @@ services:
     restart: unless-stopped
     environment:
       - PORT=5173
+      - ORIGIN=<URL>
     build: web
     ports:
       - 5173:5173
