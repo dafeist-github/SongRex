@@ -1,3 +1,1 @@
-<script>
-    import '../global.css'
-</script>
+<svelte:head><link href='../global.css'/></svelte:head>
