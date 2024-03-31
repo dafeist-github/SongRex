@@ -3,7 +3,7 @@ services:
     image: mysql:latest
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=example_pw
+      - MYSQL_ROOT_PASSWORD=examplepw
       - MYSQL_DATABASE=SongRex
     ports:
       - 3306:3306
