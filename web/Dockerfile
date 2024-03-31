@@ -1,5 +1,5 @@
 FROM node:18-alpine AS builder
-WORKDIR /app
+WORKDIR /app/build
 COPY package*.json .
 RUN npm ci
 COPY . .
