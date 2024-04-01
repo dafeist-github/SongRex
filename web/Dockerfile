@@ -11,6 +11,6 @@ WORKDIR /app
 COPY --from=builder /app .
 RUN npm install
 ENV NODE_ENV=production
-ENV SERVER_HOST=$SERVER_HOST
+ENV VITE_SERVER_HOST=$VITE_SERVER_HOST
 ENTRYPOINT [ "" ]
-CMD ["SERVER_HOST=testhost", "node", "build"]
+CMD ["node", "build"]
