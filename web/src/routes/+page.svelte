@@ -7,6 +7,7 @@
   let link = "";
 
   const hosturl = "http://" + (process.env.SERVER_HOST || "server") + ":3000";
+  console.log(hosturl)
 
   import SubmitFeedback from '$lib/SubmitFeedback.svelte';
 
