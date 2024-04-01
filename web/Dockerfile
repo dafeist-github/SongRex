@@ -13,4 +13,4 @@ RUN npm install
 ENV NODE_ENV=production
 ENV SERVER_HOST=$SERVER_HOST
 ENTRYPOINT [ "" ]
-CMD ["node", "build"]
+CMD ["SERVER_HOST=" + ${SERVER_HOST}, "node", "build"]
