@@ -5,7 +5,7 @@
   let username = "";
   let password = "";
 
-  const hosturl = (process.env.SERVER_HOST || "server") + ":3000";
+  const hosturl = process.env.SERVER_HOST || "server" + ":3000";
 
   let showFeedback = false;
   let submitState = "";
