@@ -6,7 +6,7 @@ export default defineConfig({
 	plugins: [sveltekit(),
 		replace({
 			preventAssignment: true,
-			'process.env.SERVER_HOST': process.env.VITE_SERVER_HOST || 'http://localhost',
+			'process.env.VITE_SERVER_HOST': process.env.VITE_SERVER_HOST || 'http://localhost',
 		  }),
 	]
 });
