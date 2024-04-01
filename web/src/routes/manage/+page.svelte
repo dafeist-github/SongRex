@@ -1,11 +1,13 @@
 <script>
   import { onMount } from "svelte";
 
+  const hosturl = "http://" + (process.env.SERVER_HOST || "server") + ":3000";
+
   let songs = [];
 
   onMount(async () => {
     //Get required data for this page
-    const res = await fetch("http://localhost:3000/reqdata", {
+    const res = await fetch(hosturl + "/reqdata", {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -21,7 +23,7 @@
   });
 
   async function deleteSong(name, link) {
-    const res = await fetch("http://localhost:3000/deletesong", {
+    const res = await fetch(hosturl + "/deletesong", {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -37,7 +39,7 @@
 
     if ((await res.json()).done) {
       console.log('deleted song: ' + name);
-      const res = await fetch("http://localhost:3000/reqdata", {
+      const res = await fetch(hosturl + "/reqdata", {
         method: "POST",
         headers: {
           "Accept": "application/json",

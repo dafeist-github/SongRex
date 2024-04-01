@@ -5,6 +5,8 @@
   let username = "";
   let password = "";
 
+  const hosturl = "http://" + (process.env.SERVER_HOST || "server") + ":3000";
+
   let showFeedback = false;
   let submitState = "";
 
@@ -26,7 +28,7 @@
       return;
     }
 
-    const res = await fetch('http://localhost:3000/auth', {
+    const res = await fetch(hosturl + '/auth', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

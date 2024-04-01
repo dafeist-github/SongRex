@@ -6,6 +6,8 @@
   let name = "";
   let link = "";
 
+  const hosturl = "http://" + (process.env.SERVER_HOST || "server") + ":3000";
+
   import SubmitFeedback from '$lib/SubmitFeedback.svelte';
 
   const expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
@@ -21,7 +23,7 @@
       submitState = 'invalid_link';
 
     } else {
-      const res = await fetch('http://localhost:3000/submit', {
+      const res = await fetch(hosturl + '/submit', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
