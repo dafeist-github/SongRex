@@ -8,5 +8,8 @@ export default defineConfig({
 		//	preventAssignment: true,
 		//	'process.env.SERVER_HOST': JSON.stringify(import.meta.env.VITE_SERVER_HOST || 'http://localhost'),
 		//  }),
-	]
+	],
+	define: {
+		VITE_SERVER_HOST: process.env.VITE_SERVER_HOST,
+	}
 });
