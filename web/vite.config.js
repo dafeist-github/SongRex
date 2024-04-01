@@ -4,9 +4,12 @@ import replace from '@rollup/plugin-replace';
 
 export default defineConfig({
 	plugins: [sveltekit(),
-		replace({
-			preventAssignment: true,
-			'process.env.VITE_SERVER_HOST': process.env.VITE_SERVER_HOST || 'http://localhost',
-		  }),
-	]
+		//replace({
+		//	preventAssignment: true,
+		//	'process.env.SERVER_HOST': process.env.VITE_SERVER_HOST || 'http://localhost',
+		//  }),
+	],
+	define: {
+		VITE_SERVER_HOST: process.env.VITE_SERVER_HOST || 'http://localhost',
+	  }
 });

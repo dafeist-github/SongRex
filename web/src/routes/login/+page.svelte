@@ -5,7 +5,7 @@
   let username = "";
   let password = "";
 
-  const hosturl = (process.env.VITE_SERVER_HOST || "server") + ":3000";
+  const hosturl = (import.meta.env.VITE_SERVER_HOST || "server") + ":3000";
 
   let showFeedback = false;
   let submitState = "";
