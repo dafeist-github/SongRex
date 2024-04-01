@@ -7,7 +7,6 @@
   let link = "";
 
   const hosturl = "http://" + (process.env.SERVER_HOST || "server") + ":3000";
-  console.log(hosturl)
 
   import SubmitFeedback from '$lib/SubmitFeedback.svelte';
 
@@ -16,6 +15,7 @@
 
   async function submitRequest() {
     console.log("attempting song submit");
+    console.log(hosturl)
 
     if(name.length <= 5) {
       submitState = 'missing_name';
