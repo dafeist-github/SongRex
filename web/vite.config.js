@@ -10,6 +10,6 @@ export default defineConfig({
 		//  }),
 	],
 	define: {
-		VITE_SERVER_HOST: process.env.VITE_SERVER_HOST || 'http://localhost',
+		VITE_SERVER_HOST: JSON.stringify(process.env.VITE_SERVER_HOST || 'http://localhost'),
 	  }
 });
