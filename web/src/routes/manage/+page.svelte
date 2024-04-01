@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
 
-  const hosturl = "http://" + (process.env.SERVER_HOST || "server") + ":3000";
+  const hosturl = (process.env.SERVER_HOST || "server") + ":3000";
 
   let songs = [];
 
