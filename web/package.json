@@ -17,6 +17,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@rollup/plugin-replace": "^5.0.5",
 		"dotenv": "^16.4.5"
 	}
 }
