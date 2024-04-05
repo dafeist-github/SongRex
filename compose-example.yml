@@ -17,21 +17,8 @@ services:
       - MYSQL_PASSWORD=examplepw
       - MYSQL_DATABASE=SongRex
       - SECRET_KEY=examplekey
-    build: server
+    build: .
+    ports:
+      - 3000:3000
     depends_on:
       - mysql
-
-  web:
-    container_name: songrex-web
-    restart: unless-stopped
-    build:
-      args:
-        - VITE_SERVER_HOST=<URL>
-    environment:
-      - PORT=5173
-      - ORIGIN=<URL>
-    build: web
-    ports:
-      - 5173:5173
-    depends_on:
-      - server

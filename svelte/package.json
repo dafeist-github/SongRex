@@ -7,17 +7,15 @@
 		"build": "vite build",
 		"preview": "vite preview"
 	},
-	"devDependencies": {
+	"type": "module",
+	"dependencies": {
+		"@rollup/plugin-replace": "^5.0.5",
+		"dotenv": "^16.4.5",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/adapter-node": "^5.0.1",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"svelte": "^4.2.7",
 		"vite": "^5.0.3"
-	},
-	"type": "module",
-	"dependencies": {
-		"@rollup/plugin-replace": "^5.0.5",
-		"dotenv": "^16.4.5"
 	}
 }
