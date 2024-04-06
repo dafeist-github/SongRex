@@ -1,5 +1,5 @@
 <script>
-  import { SERVER_HOST } from '$env/static/private';
+  import { env } from '$env/dynamic/public';
 
   let showFeedback = false;
   let submitState;
@@ -7,7 +7,7 @@
   let name = "";
   let link = "";
 
-  const hosturl = (SERVER_HOST || "server") + ":3000";
+  const hosturl = (env.PUBLIC_SERVER_HOST || "server") + ":3000";
 
   import SubmitFeedback from '$lib/SubmitFeedback.svelte';
 
