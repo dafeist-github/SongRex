@@ -4,7 +4,8 @@ import { mysql } from'mysql';
 import { jwt } from 'jsonwebtoken';
 import { handler } from './svelte/build/handler.js';
 
-import { argon2 } from 'argon2';
+import a2pkg from 'argon2';
+const { argon2 } = a2pkg;
 
 const app = express();
 app.use(handler);
