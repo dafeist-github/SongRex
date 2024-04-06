@@ -1,10 +1,10 @@
-const express = require('express');
-const cors = require('cors');
-const mysql = require('mysql');
-const jwt = require('jsonwebtoken');
+import { express } from 'express';
+import { cors } from 'cors';
+import { mysql } from'mysql';
+import { jwt } from 'jsonwebtoken';
 import { handler } from './svelte/build/handler.js';
 
-const argon2 = require("argon2");
+import { argon2 } from 'argon2';
 
 const app = express();
 app.use(handler);
