@@ -1,11 +1,12 @@
 import { express } from 'express';
-import { cors } from 'cors';
-import { mysql } from'mysql';
+import corspkg from 'cors';
+import { mysql } from 'mysql';
 import { jwt } from 'jsonwebtoken';
 import { handler } from './svelte/build/handler.js';
-
 import a2pkg from 'argon2';
+
 const { argon2 } = a2pkg;
+const { cors } = corspkg;
 
 const app = express();
 app.use(handler);
