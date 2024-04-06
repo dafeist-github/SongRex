@@ -6,7 +6,6 @@ import { handler } from './svelte/build/handler.js';
 import argon2 from 'argon2';
 
 const app = express();
-app.use(handler);
 app.use(cors());
 app.use(express.json());
 
@@ -169,6 +168,8 @@ app.post('/validate', function (request, response) {
 
     response.end();
 });
+
+app.use(handler);
 
 async function processSongRequest(name, link, res) {
     let exists = false;
