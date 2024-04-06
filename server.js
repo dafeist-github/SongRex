@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
-const handler = require('./svelte/build/handler.js');
+import { handler } from './svelte/build/handler.js';
 
 const argon2 = require("argon2");
 
