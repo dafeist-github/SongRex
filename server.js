@@ -8,6 +8,7 @@ import argon2 from 'argon2';
 const app = express();
 app.use(handler);
 app.use(cors());
+app.options('*', cors());
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
