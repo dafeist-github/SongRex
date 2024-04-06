@@ -8,14 +8,7 @@ import argon2 from 'argon2';
 const app = express();
 app.use(handler);
 app.use(cors());
-app.options('*', cors());
 app.use(express.json());
-app.all('*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-});
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -85,6 +78,9 @@ con.query("CREATE TABLE IF NOT EXISTS accounts (id INT AUTO_INCREMENT PRIMARY KE
 
 app.listen(3000);
 
+app.get('/healthcheck', (req, res) => {
+    res.end('ok');
+  });
 
 app.post('/reqdata', function (request, response) {
     if(!verifyRequest(request.body.username, request.body.token)) {
