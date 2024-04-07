@@ -12,7 +12,9 @@ git clone https://github.com/dafeist-github/SongRex.git
 cd /SongRex
 
 mv compose-example.yml compose.yml
+
 **Wichtig: Hier nun die compose konfigurieren, wie weiter unten beschrieben!**
+
 docker compose up -d --build
 
 Der Service sollte nun unter dem festgelegten Port erreichbar sein
