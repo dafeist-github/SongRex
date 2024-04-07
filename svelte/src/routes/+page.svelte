@@ -17,10 +17,10 @@
   async function submitRequest() {
     console.log("attempting song submit");
 
-    if(name.length <= 5) {
+    if(name.length <= 1) {
       submitState = 'missing_name';
       
-    } else if(link.length <= 20 || !link.match(regex)) {
+    } else if(!link.match(regex)) {
       submitState = 'invalid_link';
 
     } else {

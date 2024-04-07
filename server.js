@@ -43,7 +43,7 @@ app.post("/submit", (req, res) => {
 
     console.log("Song-Request received: " + name);
 
-    if (link.length <= 20 || !link.match(regex) || name.length <= 5) {
+    if (!link.match(regex)) {
         res.status(400);
         return;
     }
