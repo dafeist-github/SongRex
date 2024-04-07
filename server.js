@@ -90,7 +90,8 @@ app.get('/healthcheck', (req, res) => {
   });
 
 app.post('/reqdata', function (request, response) {
-    if(!verifyRequest(request.body.username, request.body.token)) {
+
+    if(!request.body.username || !request.body.token || !verifyRequest(request.body.username, request.body.token)) {
         response.status(401).send({auth: false});
         return;
     }
