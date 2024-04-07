@@ -15,10 +15,14 @@ const expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z
 const regex = new RegExp(expression);
 
 const secretKey = process.env.SECRET_KEY || 'examplekey';
+let iplist = [];
 
 app.post("/submit", (req, res) => {
     const name = req.body.name;
     const link = req.body.link;
+
+    if(iplist.includes(req.socket.remoteAddress)) return;
+    iplist.push(req.socket.remoteAddress);
 
     console.log("Song-Request received: " + name);
 
@@ -30,6 +34,13 @@ app.post("/submit", (req, res) => {
     processSongRequest(name, link, res);
 
     res.status(200).send('success');
+
+    setTimeout(function() {
+        
+        var index = iplist.indexOf(req.socket.remoteAddress);
+
+        iplist.splice(index, 1);
+      }, 6000);
 
 });
 
