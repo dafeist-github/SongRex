@@ -22,6 +22,10 @@
   <p class={state}>&#10060; Ungültige Login-Daten</p>
   {/if}
 
+  {#if state === 'ratelimit'}
+  <p class={state}>&#10060; Bitte warte ein paar Sekunden</p>
+  {/if}
+
 <style>
 
   p {
@@ -39,7 +43,7 @@
     line-height: 3vw;
   }
 
-  .missing_name, .invalid_link, .server_error, .invalid_creds {
+  .missing_name, .invalid_link, .server_error, .invalid_creds, .ratelimit {
     color: rgb(236, 36, 36);
   }
 

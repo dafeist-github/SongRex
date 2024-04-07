@@ -35,7 +35,10 @@ app.post("/submit", (req, res) => {
     }
 
 
-    if(iplist.includes(senderip)) return;
+    if(iplist.includes(senderip)) {
+        res.status(400).send({ratelimit: true});
+        return;
+    }
     iplist.push(senderip);
 
     console.log("Song-Request received: " + name);

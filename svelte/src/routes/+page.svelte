@@ -33,7 +33,11 @@
         })
       });
 
-      if(res.ok) {
+      const json = await res.json();
+
+      if(json.ratelimit) {
+        submitState = 'ratelimit';
+      } else if(res.ok) {
         submitState = 'success';
 
         name = "";
