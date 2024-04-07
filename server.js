@@ -168,7 +168,7 @@ app.post('/auth', function (request, response) {
 
 
         con.query('SELECT password FROM accounts WHERE username = ?', [username], function (error, results, fields) {
-            if (error || !results) {
+            if (error || results.length == 0) {
                 response.status(400).send('invalid_name_or_pw');
 
                 return;
