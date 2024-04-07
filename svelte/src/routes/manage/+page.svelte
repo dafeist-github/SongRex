@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import { goto } from '$app/navigation';
   import { env } from '$env/dynamic/public';
 
   const hosturl = env.PUBLIC_URL || "http://localhost:3000";
@@ -19,6 +20,8 @@
         token: localStorage.getItem("token"),
       }),
     });
+
+    if(!res.ok) goto("/login")
 
     songs = await res.json();
   });
