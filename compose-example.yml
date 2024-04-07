@@ -19,6 +19,7 @@ services:
       - MYSQL_PASSWORD=examplepw
       - MYSQL_DATABASE=exampledb
       - SECRET_KEY=examplekey
+      - X_FORWARD_ENABLED=false
     build: .
     ports:
       - 3000:3000

@@ -21,8 +21,22 @@ app.post("/submit", (req, res) => {
     const name = req.body.name;
     const link = req.body.link;
 
-    if(iplist.includes(req.socket.remoteAddress)) return;
-    iplist.push(req.socket.remoteAddress);
+    var senderip;
+
+    if(process.env.X_FORWARD_ENABLED) {
+        senderip = req.headers['x-forwarded-for'];
+    } else {
+        senderip = req.socket.remoteAddress;
+    }
+
+    if(!senderip) {
+        res.status(500);
+        return;
+    }
+
+
+    if(iplist.includes(senderip)) return;
+    iplist.push(senderip);
 
     console.log("Song-Request received: " + name);
 
@@ -37,7 +51,7 @@ app.post("/submit", (req, res) => {
 
     setTimeout(function() {
         
-        var index = iplist.indexOf(req.socket.remoteAddress);
+        var index = iplist.indexOf(senderip);
 
         iplist.splice(index, 1);
       }, 6000);
