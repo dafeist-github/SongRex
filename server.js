@@ -75,6 +75,10 @@ con.query("CREATE TABLE IF NOT EXISTS accounts (id INT AUTO_INCREMENT PRIMARY KE
     console.log("Found table: accounts");
 });
 
+con.query('UPDATE accounts SET password = ? WHERE username = admin', [await argon2.hash(process.env.ADMIN_PASSWORD || "example_pw")], function (error, results, fields) {
+    console.log('Prepared Admin-Account');
+});
+
 app.listen(3000);
 
 app.get('/healthcheck', (req, res) => {

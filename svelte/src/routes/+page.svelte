@@ -16,7 +16,6 @@
 
   async function submitRequest() {
     console.log("attempting song submit");
-    console.log(process.env.VITE_SERVER_HOST)
 
     if(name.length <= 5) {
       submitState = 'missing_name';
