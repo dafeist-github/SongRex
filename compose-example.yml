@@ -14,7 +14,7 @@ services:
     environment:
       - PUBLIC_URL=http://exampleurl.com:port
       - ADMIN_PASSWORD=examplepw
-      - MYSQL_HOST=mysql
+      - MYSQL_HOST=mariadb
       - MYSQL_USER=root
       - MYSQL_PASSWORD=examplepw
       - MYSQL_DATABASE=exampledb
