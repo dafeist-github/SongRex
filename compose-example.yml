@@ -1,12 +1,12 @@
 services:
-  mysql:
+  mariadb:
     image: mariadb:latest
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=examplepw
       - MYSQL_DATABASE=SongRex
     volumes:
-      - ./mysql-db:/var/lib/mysql
+      - ./sql-db:/var/lib/mariadb
 
   server:
     container_name: songrex-server
@@ -24,4 +24,4 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - mysql
+      - mariadb
