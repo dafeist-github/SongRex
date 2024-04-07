@@ -2,7 +2,7 @@
   import SubmitFeedback from '$lib/SubmitFeedback.svelte';
   import { goto } from '$app/navigation';
   import { env } from '$env/dynamic/public';
-  import { browser } from '$app/env';
+  import { browser } from '$app/environment';
 
   let username = "";
   let password = "";
