@@ -90,7 +90,7 @@ con.connect();
 
 console.log('Connected to MySQL-Server');
 
-con.query("CREATE TABLE IF NOT EXISTS songs (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100), link VARCHAR(100), count INT)", function (err, result) {
+con.query("CREATE TABLE IF NOT EXISTS songs (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), link VARCHAR(255), count INT)", function (err, result) {
     if (err) throw err;
     console.log("Found table: songs");
 });
