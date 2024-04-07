@@ -2,9 +2,11 @@
 Man kann es mit Docker-Compose sehr simpel aufsetzen, verwendet wird standardmäßig eine MariaDB-Datenbank und ein SvelteKit + ExpressJS Stack
 
 ---- Vorraussetzungen ----
+
 Beliebiges System mit Git, Docker und Docker-Compose
 
 ---- Installation ----
+
 git clone https://github.com/dafeist-github/SongRex.git
 
 cd /SongRex
@@ -16,6 +18,7 @@ docker compose up -d --build
 Der Service sollte nun unter dem festgelegten Port erreichbar sein
 
 ---- Konfiguration ----
+
 In *compose-example.yml* ist ein Template beigelegt, welches abgeändert werden soll
 
 Für den Service MariaDB soll der Datenbankname sowie das Root-Passwort angegeben werden, welches genau gleich unter SongRex-Server genannt sein muss
