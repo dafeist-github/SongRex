@@ -7,15 +7,15 @@ Beliebiges System mit Git, Docker und Docker-Compose
 
 ---- Installation ----
 
-git clone https://github.com/dafeist-github/SongRex.git
+```git clone https://github.com/dafeist-github/SongRex.git```
 
-cd /SongRex
+```cd /SongRex```
 
-mv compose-example.yml compose.yml
+```mv compose-example.yml compose.yml```
 
 **Wichtig: Hier nun die compose konfigurieren, wie weiter unten beschrieben!**
 
-docker compose up -d --build
+```docker compose up -d --build```
 
 Der Service sollte nun unter dem festgelegten Port erreichbar sein
 
