@@ -6,7 +6,7 @@
   let username = "";
   let password = "";
 
-  const hosturl = (env.PUBLIC_SERVER_HOST || "server") + ":3000";
+  const hosturl = env.PUBLIC_URL || "http://localhost:3000";
 
   let showFeedback = false;
   let submitState = "";
