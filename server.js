@@ -75,7 +75,11 @@ con.query("CREATE TABLE IF NOT EXISTS accounts (id INT AUTO_INCREMENT PRIMARY KE
     console.log("Found table: accounts");
 });
 
-con.query('UPDATE accounts SET password = ? WHERE username = admin', [await argon2.hash(process.env.ADMIN_PASSWORD || "example_pw")], function (error, results, fields) {
+const adminpwhash = await argon2.hash(process.env.ADMIN_PASSWORD || "example_pw");
+
+con.query('INSERT INTO accounts (id, username, password, email) VALUES (1, `admin`, ?, `example@domain.com`) ON DUPLICATE KEY UPDATE password = ?', [adminpwhash, adminpwhash], function (error, results, fields) {
+    if(error) console.log(error);
+
     console.log('Prepared Admin-Account');
 });
 
