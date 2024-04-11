@@ -1,4 +1,5 @@
 **SongRex** ist eine Plattform, wo Personen für z.B. private Partys Songs einreichen können, die dann von einem Admin verwaltet werden können
+
 Man kann es mit Docker-Compose sehr simpel aufsetzen, verwendet wird standardmäßig eine MariaDB-Datenbank und ein SvelteKit + ExpressJS Stack
 
 ---- Vorraussetzungen ----
