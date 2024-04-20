@@ -244,6 +244,7 @@ function generateToken(username) {
 }
 
 function verifyRequest(username, token) {
+    if(!username && "admin" === verifyToken(token).username) return true;
     if (username === verifyToken(token).username) return true;
 }
 
