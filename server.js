@@ -119,7 +119,13 @@ app.get('/healthcheck', (req, res) => {
 
 app.post('/reqdata', function (request, response) {
 
-    if(!request.body.username || !request.body.token || !verifyRequest(request.body.username, request.body.token)) {
+    if(!request.body.username) {
+        username = "admin";
+    } else { 
+        username = request.body.username;
+    }
+    
+    if(!request.body.username || !request.body.token || !verifyRequest(username, request.body.token)) {
         response.status(401).send({auth: false});
         return;
     }
