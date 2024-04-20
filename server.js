@@ -247,7 +247,7 @@ function generateToken(username) {
 }
 
 function verifyRequest(username, token) {
-    console.log(token);
+    console.log(verifyToken(token))
     if(verifyToken(token)) {
     if (username === verifyToken(token)) return true;
     } else {
