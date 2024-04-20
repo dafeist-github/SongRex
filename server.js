@@ -249,7 +249,7 @@ function generateToken(username) {
 function verifyRequest(username, token) {
     console.log(verifyToken(token))
     if(verifyToken(token)) {
-    if (username === verifyToken(token)) return true;
+    if (username === verifyToken(token).username) return true;
     } else {
     return false;
     }
