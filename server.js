@@ -248,7 +248,11 @@ function generateToken(username) {
 }
 
 function verifyRequest(username, token) {
-    if (username === verifyToken(token).username) return true;
+    if(verifyToken(token)) {
+    if (username === verifyToken(token)) return true;
+    } else {
+    return false;
+    }
 }
 
 function verifyToken(token) {
