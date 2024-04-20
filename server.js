@@ -50,7 +50,7 @@ app.post("/submit", (req, res) => {
 
     processSongRequest(name, link, res);
 
-    res.status(200).send('success');
+    res.status(200).send({'success': 'true'});
 
     setTimeout(function() {
         
