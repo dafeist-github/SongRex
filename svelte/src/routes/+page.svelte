@@ -35,16 +35,17 @@
 
       const json = await res.json();
 
-      if(json.ratelimit) {
-        submitState = 'ratelimit';
-      } else if(res.ok) {
+      if(res.ok) {
         submitState = 'success';
 
         name = "";
         link = "";
+      } else if(json.ratelimit == true) {
+        submitState = 'ratelimit';
       } else {
         submitState = 'server_error';
       }
+
     }
 
     showFeedback = true;
