@@ -119,7 +119,7 @@ app.get('/healthcheck', (req, res) => {
 
 app.post('/reqdata', function (request, response) {
 
-    const username = "admin";
+    let username = "admin";
 
     if(request.body.username) username = request.body.username;
     
